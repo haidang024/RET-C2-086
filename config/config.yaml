@@ -1,0 +1,29 @@
+# Runtime configuration — RET-C2-086
+# Static discovery identity belongs in config/agent.yaml.
+
+# AgentBaseGraph backbone parameters
+max_retry: 3
+timeout_s: 30
+memory_enabled: false
+
+# The planner-review draft is declarative output; no node calls interrupt().
+# Framework HITL and PB-7 are therefore disabled/auto-waived.
+hitl:
+  enabled: false
+
+# Domain runtime parameters
+max_input_length: 10000
+forecast_horizon_days: 7
+low_confidence_threshold: 0.55
+planner_review_draft_enabled: true
+lead_time_days_default: 2
+safety_days_default: 1
+moq_default: 10
+pack_size_default: 5
+
+# Invocation-scoped Azure OpenAI settings. The LLM may add commentary;
+# deterministic calculations remain authoritative.
+llm_provider: "azure_openai"
+llm_model: "azure-openai-deployment"
+temperature: 0.1
+max_tokens: 1024
